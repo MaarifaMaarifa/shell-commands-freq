@@ -1,0 +1,20 @@
+[package]
+name = "shell-commands-freq"
+version = "0.1.0"
+authors = ["Maarifa Maarifa"]
+license = "MIT"
+categories = ["command-line-utilities"]
+keywords = ["shell", "bash", "fish", "zsh"]
+edition = "2021"
+description = """
+A simple program to check your shell's commands frequency based on how many times your entered them.
+"""
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[profile.release]
+strip = true
+lto = true
+
+[dependencies]
+clap = { version = "3.2.16", features = ["derive"] }
