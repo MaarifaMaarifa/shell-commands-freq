@@ -6,6 +6,7 @@ license = "MIT"
 categories = ["command-line-utilities"]
 keywords = ["shell", "bash", "fish", "zsh"]
 edition = "2021"
+repository = "https://github.com/MaarifaMaarifa/shell-commands-freq"
 description = """
 A simple program to check your shell's commands frequency based on how many times your entered them.
 """
