@@ -1,13 +1,12 @@
-
 mod shells;
 
 use std::collections::HashMap;
 use std::process;
 
+use shells::Bash;
+use shells::Fish;
 use shells::Shell;
 use shells::Zsh;
-use shells::Fish;
-use shells::Bash;
 
 use clap::Parser;
 
@@ -33,30 +32,34 @@ fn main() {
         _ => {
             eprintln!("Could not find the given shell");
             process::exit(1);
-        },
+        }
     }
-
 }
 
 fn print_sorted<T: Shell>(shell: T, reverse: bool) {
-    let mut command_freq = HashMap::new();
+    // A Hashmap to store command and their corresponding frequency
+    let mut command_freq_pair = HashMap::new();
 
+    // Getting the commands ever ran for the passed shell
     let commands = shell.get_commands_ran();
 
+    // Performing a count of every command and recording it's frequency
     for command in commands {
-        let value = command_freq.entry(command).or_insert(0);
+        let value = command_freq_pair.entry(command).or_insert(0);
         *value += 1;
     }
 
-    let mut fin: Vec<(&String, &i32)> = command_freq.iter().collect();
-    fin.sort_by(|a, b| b.1.cmp(a.1));
+    // Converting the command_freq_pair into a vec so that it can be sorted
+    let mut command_freq_pair: Vec<(&String, &i32)> = command_freq_pair.iter().collect();
+    command_freq_pair.sort_by(|a, b| b.1.cmp(a.1));
 
+    // Printing the results, checking if reversed is supplied, so that the results can be reversed
     if reverse {
-        for a in fin.into_iter().rev() {
+        for a in command_freq_pair.into_iter().rev() {
             println!("{} => {}", a.0, a.1);
         }
     } else {
-        for a in fin {
+        for a in command_freq_pair {
             println!("{} => {}", a.0, a.1);
         }
     }
