@@ -37,7 +37,7 @@ fn get_shell_history_file_contents(default_path: &str) -> String {
 
     // Reading the history file and returning its contents
     fs::read_to_string(history_file_path).unwrap_or_else(|err| {
-        eprintln!("Could not load the zsh history file: {}", err);
+        eprintln!("Could not load the shell's history file: {}", err);
         process::exit(1);
     })
 }
