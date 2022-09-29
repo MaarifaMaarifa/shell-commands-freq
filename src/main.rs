@@ -10,6 +10,7 @@ use shells::Zsh;
 
 use clap::Parser;
 
+/// A Struct for command line arguments parsing
 #[derive(Debug, Parser)]
 #[clap(about, author, version)]
 struct Cli {
@@ -25,6 +26,7 @@ struct Cli {
 fn main() {
     let args = Cli::parse();
 
+    // Matching the supplied shell after argument parsing
     match &args.shell[..] {
         "zsh" => print_sorted(Zsh, args.reverse),
         "fish" => print_sorted(Fish, args.reverse),
@@ -36,6 +38,8 @@ fn main() {
     }
 }
 
+/// A Function thats prints out the commands and their corresponding frequencies,
+/// reverses the sorting if the reverse argument is true
 fn print_sorted<T: Shell>(shell: T, reverse: bool) {
     // A Hashmap to store command and their corresponding frequency
     let mut command_freq_pair = HashMap::new();
