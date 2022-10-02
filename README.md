@@ -26,12 +26,22 @@ shell-commands-freq "shell"
 shell-commands-freq -r "shell" 
 ```
 
+## Installation
 
+#### using cargo
 
-### Installation
-
-The binary sources are available through crates.io and can be installed using cargo.
+shell-commands-freq is available as a crate in crate.io, and can be installed as follows.
 
 ```sh
 cargo install shell-commands-freq
+```
+
+#### building from source
+
+
+
+```shell
+git clone https://github.com/MaarifaMaarifa/shell-commands-freq
+cd shell-commands-freq
+cargo install --force --path .
 ```
